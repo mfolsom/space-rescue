@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import FlySpaceCraft from './components/FlySpaceCraft';
 import Gauge from './components/Gauge';
 import FuelGauge from './components/FuelGauge';
 import OxygenGauge from './components/OxygenGauge';
-import Dashboard from './components/DashBoard';
-
+import Dashboard from './components/Dashboard';
 
 const App: React.FC = () => {
 
