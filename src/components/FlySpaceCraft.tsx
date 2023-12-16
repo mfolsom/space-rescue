@@ -10,6 +10,7 @@ const initializeBabylon = (canvas: HTMLCanvasElement, targetMesh: BABYLON.Mesh |
     const engine = new BABYLON.Engine(canvas, true);
     const scene = new BABYLON.Scene(engine);
     const camera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(0, 10, -10), scene);
+    scene.activeCamera = camera;
 
     // The goal distance of camera from target
     camera.radius = 30;
@@ -27,7 +28,7 @@ const initializeBabylon = (canvas: HTMLCanvasElement, targetMesh: BABYLON.Mesh |
     camera.maxCameraSpeed = 20;
 
     // This attaches the camera to the canvas
-    camera.attachControl(canvas, true);
+    scene.activeCamera.attachControl(canvas, true);
 
     // The target of the camera, what it's looking at
     camera.lockedTarget = targetMesh;
