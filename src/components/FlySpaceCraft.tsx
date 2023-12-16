@@ -9,6 +9,7 @@ const initializeBabylon = (canvas: HTMLCanvasElement, targetMesh: BABYLON.Mesh |
     console.log("Initializing Babylon...")
     const engine = new BABYLON.Engine(canvas, true);
     const scene = new BABYLON.Scene(engine);
+    scene.clearColor = new BABYLON.Color4(0, 0, 0, 1);
     const camera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(0, 10, -10), scene);
     scene.activeCamera = camera;
 
