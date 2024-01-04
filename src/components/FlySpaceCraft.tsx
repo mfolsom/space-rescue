@@ -1,7 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as BABYLON from '@babylonjs/core';
 import '@babylonjs/loaders/glTF';
 import { createLights, createStarfield } from "./utils/spaceCraft";
+import GaugesModal from "./GaugesModal";
+
 let velocity = 0;
 
 
@@ -34,15 +36,17 @@ const initializeBabylon = (canvas: HTMLCanvasElement, targetMesh: BABYLON.Mesh |
     // The target of the camera, what it's looking at
     camera.lockedTarget = targetMesh;
     camera.inertia = 0.5;
-    // scene.registerBeforeRender(function () {
-    //     console.log(`Camera Z position: ${camera.position.z}`);
-    // });
+
 
     return { engine, scene, camera };
 };
 
 
-const loadMeshes = (scene: BABYLON.Scene, spaceCraftMesh: React.MutableRefObject<BABYLON.Mesh | null>) => {
+const loadMeshes = (
+    scene: BABYLON.Scene,
+    spaceCraftMesh: React.MutableRefObject<BABYLON.Mesh | null>,
+    onSpaceCraftMove: (coordinates: { x: number, y: number, z: number }) => void
+) => {
     console.log("Loading meshes...")
     return new Promise<void>((resolve) => {
         BABYLON.SceneLoader.ImportMesh("", "assets/", "Spaceship_BarbaraTheBee.gltf", scene, function (meshes) {
@@ -74,6 +78,11 @@ const loadMeshes = (scene: BABYLON.Scene, spaceCraftMesh: React.MutableRefObject
                             // Move the spacecraft mesh forward when the "w" key is pressed
                             // spaceCraftMesh.current.position.z += 1;
                             velocity += 1;
+                            onSpaceCraftMove({
+                                x: spaceCraftMesh.current.position.x,
+                                y: spaceCraftMesh.current.position.y,
+                                z: spaceCraftMesh.current.position.z
+                            });
                             console.log(`Y Position: ${spaceCraftMesh.current.position.y}`);
                             console.log(`X Position: ${spaceCraftMesh.current.position.x}`);
                             console.log(`Z Position: ${spaceCraftMesh.current.position.z}`);
@@ -81,7 +90,6 @@ const loadMeshes = (scene: BABYLON.Scene, spaceCraftMesh: React.MutableRefObject
                     }
                 )
             );
-
             resolve(); // Resolve the Promise when the mesh is loaded
         });
     });
@@ -98,30 +106,28 @@ const startRenderLoop = (engine: BABYLON.Engine, scene: BABYLON.Scene, spaceCraf
     });
 };
 
-const FlySpaceCraft: React.FC = () => {
+const FlySpaceCraft: React.FC<{
+    isGaugesModalVisible: boolean,
+    onSpaceCraftMove: (coordinates: { x: number, y: number, z: number }) => void
+}> = ({ isGaugesModalVisible, onSpaceCraftMove }) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const spaceCraftMesh: React.MutableRefObject<BABYLON.Mesh | null> = useRef(null);
     const isInitialized = useRef(false);
 
+
     useEffect(() => {
         const loadAndStart = async () => {
+            console.log("GAUGES visible in FLYSPACECRAFT?" + isGaugesModalVisible)
 
-            console.log("Loading and starting...")
             if (canvasRef.current && !isInitialized.current) {
-                isInitialized.current = true; // Mark as initialized
-                console.log("Initialized? : " + { isInitialized })
-                console.log({ isInitialized })
+                isInitialized.current = true;
+
                 const { engine, scene, camera } = initializeBabylon(canvasRef.current, spaceCraftMesh.current);
 
                 createLights(scene);
                 createStarfield(scene);
-                await loadMeshes(scene, spaceCraftMesh); // Wait for the mesh to load
+                await loadMeshes(scene, spaceCraftMesh, onSpaceCraftMove); // Wait for the mesh to load
                 camera.lockedTarget = spaceCraftMesh.current; // Set the camera to follow the mesh
-                if (scene.meshes.some(mesh => mesh === spaceCraftMesh.current)) {
-                    console.log('The mesh is present in the scene');
-                } else {
-                    console.log('The mesh is not present in the scene');
-                }
                 startRenderLoop(engine, scene, spaceCraftMesh);
 
                 return () => {
@@ -135,7 +141,12 @@ const FlySpaceCraft: React.FC = () => {
         loadAndStart();
     }, []);
 
-    return <canvas ref={canvasRef} />;
+    return (
+        <div className="canvas-container">
+            {isGaugesModalVisible && <GaugesModal isVisible={isGaugesModalVisible} />}
+            <canvas ref={canvasRef} />
+        </div>
+    );
 };
 
 export default FlySpaceCraft;

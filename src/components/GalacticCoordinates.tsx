@@ -1,5 +1,6 @@
 // GalacticCoordinates.tsx
 import React from 'react';
+import './FlySpaceCraft.tsx';
 
 interface GalacticCoordinatesProps {
     l: number;
@@ -9,8 +10,8 @@ interface GalacticCoordinatesProps {
 const GalacticCoordinates: React.FC<GalacticCoordinatesProps> = ({ l, b }) => {
     return (
         <div>
-            <p>Longitude: {l}°</p>
-            <p>Latitude: {b}°</p>
+            <p>X: {spaceCraftMesh.current.position.x}°</p>
+            <p>Y: {spaceCraftMesh.current.position.y}°</p>
         </div>
     );
 };

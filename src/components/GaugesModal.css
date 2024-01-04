@@ -1,0 +1,75 @@
+/* Styles that apply to all devices */
+.modal {
+    position: fixed;
+    /* top: 75%; */
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(4, 236, 248, 0.5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 40px 40px 0 0;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height:auto;
+}
+
+.close-button {
+    align-self: flex-end;
+    padding: 20px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.gauges-container {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Small phone screens */
+@media (max-width: 480px) {
+    .modal {
+        top: 25%;
+        width: auto;
+        height: auto;
+    }
+
+    .gauges-container .gauge {
+        width: 100%;
+        max-width: 300px;
+        margin: 5px auto;
+    }
+}
+
+/* Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+    .modal {
+        width: 80%;
+        height: auto;
+    }
+
+    .gauges-container .gauge {
+        width: 45%;
+        max-width: 350px; 
+        margin: 10px;
+    }
+}
+
+/* Large computer screens */
+@media (min-width: 769px) {
+    .modal {
+        width: 60%;
+        height: auto;
+    }
+
+    .gauges-container .gauge {
+        width: 30%;
+        max-width: 400px; 
+        margin: 15px;
+    }
+}

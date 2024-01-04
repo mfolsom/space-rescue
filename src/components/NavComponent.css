@@ -1,0 +1,70 @@
+.top-right-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.top-right-nav button {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.player-info {
+    margin-top: 10px;
+}
+
+/* Small phone screens */
+@media (max-width: 480px) {
+    .top-right-nav {
+        padding: 8px; /* Less padding to save space */
+        font-size: 0.85em; /* Smaller font size for compact layout */
+    }
+
+    .top-right-nav button {
+        margin-bottom: 6px; /* Less spacing between buttons */
+        font-size: 0.85em; /* Smaller button font size */
+    }
+
+    .player-info p {
+        margin-bottom: 4px; /* Tighter paragraph spacing */
+    }
+}
+
+/* Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+    .top-right-nav {
+        padding: 12px; /* Slightly more padding than on phones */
+        font-size: 0.95em; /* Adjust font size for readability */
+    }
+
+    .top-right-nav button {
+        margin-bottom: 8px; /* Adjust button spacing */
+        font-size: 0.95em; /* Adjust button font size if needed */
+    }
+
+    .player-info p {
+        margin-bottom: 6px; /* Adjust paragraph spacing */
+    }
+}
+
+/* Large computer screens */
+@media (min-width: 769px) {
+    .top-right-nav {
+        padding: 15px; /* Increased padding for larger screens */
+        font-size: 1em; /* Larger font size for better readability */
+        
+    }
+
+    .top-right-nav button {
+        margin-bottom: 10px; /* Larger margin for better spacing */
+        font-size: 1em; /* Optionally increase button font size */
+    }
+
+    .player-info p {
+        margin-bottom: 5px; /* Adjust spacing between player info lines */
+    }
+}
