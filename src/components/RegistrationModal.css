@@ -1,0 +1,43 @@
+.registration-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.registration-modal-content {
+    background-color: rgba(10, 198, 245, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+    color: rgb(178, 238, 247);
+    text-align: left;
+    font-size: large;
+}
+.registration-modal-content input {
+    padding: 8px;
+    margin: 10px;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+.registration-modal-content button {
+    padding: 20px;
+    margin: 10px;
+    width: 90%;
+    box-sizing: border-box;
+    background-color: rgba(5, 255, 168, 0.5);
+    color: rgb(178, 238, 247);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.registration-modal-content h2 {
+    text-align: center;
+}

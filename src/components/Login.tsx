@@ -2,7 +2,11 @@
 import React, { useState } from 'react';
 import authService from '../services/authService';
 
-const Login = () => {
+interface LoginProps {
+    onLoginSuccess: (userData: any) => void;
+}
+
+const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState<string[]>([]);
@@ -17,7 +21,7 @@ const Login = () => {
                 }
             });
             console.log('Login successful', response);
-            // Redirect or perform additional actions on successful login
+            onLoginSuccess(response.data);
         } catch (error) {
             setErrors(['Login failed. Please check your credentials.']);
         }

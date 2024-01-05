@@ -1,18 +1,21 @@
 .App {
-    /* Default styles for large screens */
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    align-items: center; /* Center children vertically */
+    justify-content: center; /* Center children horizontally */
 }
 
 @media (max-width: 600px) {
     .App {
-        /* Adjusted styles for small screens */
         flex-direction: column;
     }
 }
+
 .gauge {
     flex: 1 0 auto;
-    margin: 10px; /* Adjust this value as needed */
+    margin: 10px; 
 }
 

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import authService from '../services/authService';
 
+
 interface AxiosError extends Error {
     response: {
         data: {
@@ -10,7 +11,12 @@ interface AxiosError extends Error {
     };
 }
 
-const Registration = () => {
+interface RegistrationProps {
+    onRegistrationSuccess: () => void;
+    onShowLogin: () => void;
+}
+
+const Registration: React.FC<RegistrationProps> = ({ onRegistrationSuccess, onShowLogin }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
@@ -27,7 +33,7 @@ const Registration = () => {
                 displayName: displayName,
             });
             console.log('Registration successful', response);
-            // Redirect or perform additional actions on successful registration
+            onRegistrationSuccess();
         } catch (error) {
             const axiosError = error as AxiosError;
             setErrors(
@@ -42,7 +48,8 @@ const Registration = () => {
 
     return (
         <div>
-            <h2>Register</h2>
+            <h1>Welcome to Space Rescue!</h1>
+            <h2>Sign Up</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Email:</label>
@@ -60,7 +67,7 @@ const Registration = () => {
                     <label>Display Name:</label>
                     <input type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} />
                 </div>
-                <button type="submit">Register</button>
+                <button type="submit">Submit</button>
             </form>
             {errors.length > 0 && (
                 <div>
@@ -69,6 +76,11 @@ const Registration = () => {
                     ))}
                 </div>
             )}
+            <div className="login-link">
+                <p>
+                    Already have an account? <span onClick={onShowLogin} style={{ cursor: 'pointer', color: 'blue' }}>Log in</span>
+                </p>
+            </div>
         </div>
     );
 };

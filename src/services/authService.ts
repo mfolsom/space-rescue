@@ -29,9 +29,10 @@ const register = async (userData: User) => {
 
 
 // User Login
-const login = async (credentials: Pick<User, 'email' | 'password'>) => {
+// User Login
+const login = async (user: { user: Pick<User, 'email' | 'password'> }) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/users/sign_in`, credentials);
+        const response = await axios.post(`${API_BASE_URL}/users/sign_in`, user);
         // You might want to store the user token here if your API provides one
         return response.data;
     } catch (error) {
