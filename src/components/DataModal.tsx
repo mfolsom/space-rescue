@@ -3,7 +3,7 @@ import './DataModal.css';
 
 interface DataModalProps {
     isVisible: boolean;
-    coordinates: { x: number, y: number, z: number }; // Add coordinates prop
+    coordinates: { x: number, y: number, z: number };
 }
 
 
@@ -15,7 +15,6 @@ const DataModal: React.FC<DataModalProps> = ({ isVisible, coordinates }) => {
         weather: ['Lightning Strikes', 'Freezing Clouds', 'Dust Storms', 'High Winds']
     };
 
-    // Helper function to randomly select two items from an array
     const selectRandomConditions = (conditions: string[]) => {
         const shuffled = [...conditions].sort(() => 0.5 - Math.random());
         return shuffled.slice(0, 2);
@@ -28,10 +27,12 @@ const DataModal: React.FC<DataModalProps> = ({ isVisible, coordinates }) => {
             <h2>Galactic Coordinates</h2>
             <p>X: {coordinates.x.toFixed(2)}, Y: {coordinates.y.toFixed(2)}, Z: {coordinates.z.toFixed(2)}</p>
 
-            {coordinates.z >= 4000 && (
+            {coordinates.z >= 3500 && (
                 <>
-                    <h2>Planetary Conditions</h2>
-                    <p>Orbiting: {planetConditions.name}</p>
+                    <h2>
+                        {coordinates.z >= 4250 ? `Successful Orbit: ${planetConditions.name}` : `Approaching ${planetConditions.name}`}
+                    </h2>
+                    <h3>Landing Conditions</h3>
                     <ul>
                         {selectedConditions.map((condition, index) => (
                             <li key={index}>{condition}</li>

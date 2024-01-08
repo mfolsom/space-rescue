@@ -13,7 +13,8 @@ const App: React.FC = () => {
   const [spaceCraftCoordinates, setSpaceCraftCoordinates] = useState({ x: 0, y: 0, z: 0 });
   const [isRegistrationModalVisible, setIsRegistrationModalVisible] = useState(true);
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
-  const [playerInfo, setPlayerInfo] = useState({ name: '', score: 0, credits: 0 });
+  const [playerInfo, setPlayerInfo] = useState({ name: '', level: 0, credits: 0 });
+  const [fuel, setFuel] = useState(100);
 
   const handleOpenDataModal = () => setIsDataModalVisible(true);
   const toggleGaugesModal = () => setIsGaugesModalVisible(prev => !prev);
@@ -50,6 +51,8 @@ const App: React.FC = () => {
               <FlySpaceCraft
                 isGaugesModalVisible={isGaugesModalVisible}
                 onSpaceCraftMove={handleSpaceCraftMove}
+                fuel={fuel}
+                setFuel={setFuel}
               />
               <DataModal isVisible={isDataModalVisible} coordinates={spaceCraftCoordinates} />
               <NavComponent

@@ -1,5 +1,8 @@
 import React from 'react';
 import './NavComponent.css';
+import playerIcon from '../assets/astronaut.png'
+import creditsIcon from '../assets/credits.png'
+import levelIcon from '../assets/level.png'
 
 interface NavComponentProps {
     onToggleGauges: () => void;
@@ -12,13 +15,15 @@ interface NavComponentProps {
 const NavComponent: React.FC<NavComponentProps> = ({ onToggleGauges, onOpenData, playerName, level, credits }) => {
     return (
         <div className="top-right-nav">
-            <button onClick={onToggleGauges}>Flight Instruments</button>
-            <button onClick={onOpenData}>Flight Data</button>
+
             <div className="player-info">
-                <p>Player: {playerName}</p>
-                <p>Level: {level}</p>
-                <p>Credits: {credits}</p>
+                <p><img className="player-icon" src={playerIcon} alt="Player Icon" /> {playerName}</p>
+                <p><img className="player-icon" src={levelIcon} alt="Level Icon" />Level: {level}</p>
+                <p><img className="player-icon" src={creditsIcon} alt="Credits Icon" /> Credits: {credits}</p>
+
             </div>
+            <button onClick={onOpenData}>Flight Data</button>
+            <button onClick={onToggleGauges}>Flight Instruments</button>
         </div>
     );
 };

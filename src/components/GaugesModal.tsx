@@ -5,7 +5,7 @@ import FuelIcon from './../assets/fuel.png';
 import OxygenIcon from './../assets/oxygen.png';
 import './GaugesModal.css';
 
-const GaugesModal: React.FC<{ isVisible: boolean, velocity: number }> = ({ isVisible, velocity }) => {
+const GaugesModal: React.FC<{ isVisible: boolean, velocity: number, fuel: number }> = ({ isVisible, velocity, fuel }) => {
     // Normalize velocity to a percentage (assuming full throttle corresponds to velocity of 100)
     const velocityPercent = Math.round(Math.min(Math.max(velocity, 0), 100));
 
@@ -16,8 +16,8 @@ const GaugesModal: React.FC<{ isVisible: boolean, velocity: number }> = ({ isVis
                     {/* You may want to keep or move the close functionality to the parent */}
                     <div className="gauges-container">
                         <CustomGauge radius={100} percent={velocityPercent} icon={VelocityIcon} label="Velocity" />
-                        <CustomGauge radius={100} percent={10} icon={FuelIcon} label="Fuel" />
-                        <CustomGauge radius={100} percent={80} icon={OxygenIcon} label="Oxygen" />
+                        <CustomGauge radius={100} percent={Math.round(fuel)} icon={FuelIcon} label="Fuel" />
+                        <CustomGauge radius={100} percent={83} icon={OxygenIcon} label="Oxygen" />
                     </div>
                 </div>
             )}

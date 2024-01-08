@@ -63,5 +63,20 @@ const getUserDetails = async (userId: string) => {
     }
 };
 
-const authService = { register, login, logout, getUserDetails };
+//Update User Credits
+const updateUserCredits = async (userId: string, newCredits: number) => {
+    try {
+        const response = await axios.put(`${API_BASE_URL}/users/${userId}`, {
+            user: {
+                credits: newCredits
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error updating user credits", error);
+        throw error;
+    }
+};
+
+const authService = { register, login, logout, getUserDetails, updateUserCredits };
 export default authService;
