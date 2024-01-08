@@ -12,21 +12,33 @@ const DataModal: React.FC<DataModalProps> = ({ isVisible, coordinates }) => {
 
     const planetConditions = {
         name: 'Mars',
-        weather: ['Lightning Strikes', 'Freezing Clouds', 'Dust Storms', 'Wind Trajectories']
+        weather: ['Lightning Strikes', 'Freezing Clouds', 'Dust Storms', 'High Winds']
     };
+
+    // Helper function to randomly select two items from an array
+    const selectRandomConditions = (conditions: string[]) => {
+        const shuffled = [...conditions].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, 2);
+    };
+
+    const selectedConditions = selectRandomConditions(planetConditions.weather);
 
     return (
         <div className="data-modal">
             <h2>Galactic Coordinates</h2>
             <p>X: {coordinates.x.toFixed(2)}, Y: {coordinates.y.toFixed(2)}, Z: {coordinates.z.toFixed(2)}</p>
 
-            <h2>Planetary Conditions</h2>
-            <p>Planet: {planetConditions.name}</p>
-            <ul>
-                {planetConditions.weather.map((condition, index) => (
-                    <li key={index}>{condition}</li>
-                ))}
-            </ul>
+            {coordinates.z >= 4000 && (
+                <>
+                    <h2>Planetary Conditions</h2>
+                    <p>Orbiting: {planetConditions.name}</p>
+                    <ul>
+                        {selectedConditions.map((condition, index) => (
+                            <li key={index}>{condition}</li>
+                        ))}
+                    </ul>
+                </>
+            )}
         </div>
     );
 };

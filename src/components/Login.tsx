@@ -21,7 +21,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                 }
             });
             console.log('Login successful', response);
-            onLoginSuccess(response.data);
+            onLoginSuccess(response);
         } catch (error) {
             setErrors(['Login failed. Please check your credentials.']);
         }

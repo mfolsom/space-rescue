@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import * as BABYLON from '@babylonjs/core';
 import '@babylonjs/loaders/glTF';
 import { createLights, createStarfield } from "./utils/spaceCraft";
+import createMars from "./utils/marsUtils";
 import GaugesModal from "./GaugesModal";
 
 let velocity = 0;
@@ -45,7 +46,8 @@ const initializeBabylon = (canvas: HTMLCanvasElement, targetMesh: BABYLON.Mesh |
 const loadMeshes = (
     scene: BABYLON.Scene,
     spaceCraftMesh: React.MutableRefObject<BABYLON.Mesh | null>,
-    onSpaceCraftMove: (coordinates: { x: number, y: number, z: number }) => void
+    onSpaceCraftMove: (coordinates: { x: number, y: number, z: number }) => void,
+    setIsKeyPressed: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
     console.log("Loading meshes...")
     return new Promise<void>((resolve) => {
@@ -57,7 +59,7 @@ const loadMeshes = (
                 mesh.position.z = 10; // Example: Adjusting the position
                 mesh.rotation.y = Math.PI; // Example: Adjusting the rotation
                 mesh.rotation.x = Math.PI / 2; // Example: Adjusting the rotation
-                // mesh.scaling.scaleInPlace(0.01); // Example: Adjusting the scale
+
 
             });
 
@@ -74,6 +76,7 @@ const loadMeshes = (
                         parameter: 'w'
                     },
                     function () {
+                        setIsKeyPressed(true);
                         if (spaceCraftMesh.current) {
                             // Move the spacecraft mesh forward when the "w" key is pressed
                             // spaceCraftMesh.current.position.z += 1;
@@ -87,6 +90,44 @@ const loadMeshes = (
                             console.log(`X Position: ${spaceCraftMesh.current.position.x}`);
                             console.log(`Z Position: ${spaceCraftMesh.current.position.z}`);
                         }
+                    }
+                )
+            );
+
+            // Register a new action for the "s" key press
+            scene.actionManager.registerAction(
+                new BABYLON.ExecuteCodeAction(
+                    {
+                        trigger: BABYLON.ActionManager.OnKeyDownTrigger,
+                        parameter: 's'
+                    },
+                    function () {
+                        setIsKeyPressed(true);
+                        if (spaceCraftMesh.current) {
+                            // Move the spacecraft mesh backward when the "s" key is pressed
+                            // spaceCraftMesh.current.position.z -= 1;
+                            velocity -= 1;
+                            onSpaceCraftMove({
+                                x: spaceCraftMesh.current.position.x,
+                                y: spaceCraftMesh.current.position.y,
+                                z: spaceCraftMesh.current.position.z
+                            });
+                            console.log(`Y Position: ${spaceCraftMesh.current.position.y}`);
+                            console.log(`X Position: ${spaceCraftMesh.current.position.x}`);
+                            console.log(`Z Position: ${spaceCraftMesh.current.position.z}`);
+                        }
+                    }
+                )
+            );
+
+            // Register a new action for the key up event
+            scene.actionManager.registerAction(
+                new BABYLON.ExecuteCodeAction(
+                    {
+                        trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                    },
+                    function () {
+                        setIsKeyPressed(false); // Set isKeyPressed to false when any key is released
                     }
                 )
             );
@@ -113,6 +154,7 @@ const FlySpaceCraft: React.FC<{
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const spaceCraftMesh: React.MutableRefObject<BABYLON.Mesh | null> = useRef(null);
     const isInitialized = useRef(false);
+    const [isKeyPressed, setIsKeyPressed] = useState(false);
 
 
     useEffect(() => {
@@ -126,7 +168,9 @@ const FlySpaceCraft: React.FC<{
 
                 createLights(scene);
                 createStarfield(scene);
-                await loadMeshes(scene, spaceCraftMesh, onSpaceCraftMove); // Wait for the mesh to load
+                createMars(scene);
+
+                await loadMeshes(scene, spaceCraftMesh, onSpaceCraftMove, setIsKeyPressed); // Wait for the mesh to load
                 camera.lockedTarget = spaceCraftMesh.current; // Set the camera to follow the mesh
                 startRenderLoop(engine, scene, spaceCraftMesh);
 
@@ -143,7 +187,7 @@ const FlySpaceCraft: React.FC<{
 
     return (
         <div className="canvas-container">
-            {isGaugesModalVisible && <GaugesModal isVisible={isGaugesModalVisible} />}
+            {isGaugesModalVisible && <GaugesModal isVisible={isGaugesModalVisible} velocity={isKeyPressed ? 100 : 0} />}
             <canvas ref={canvasRef} />
         </div>
     );

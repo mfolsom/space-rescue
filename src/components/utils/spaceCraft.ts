@@ -7,7 +7,7 @@ const createStarfield = (scene: BABYLON.Scene) => {
     starfield.createSphereEmitter(10000, 0);
 
     // We want to emit all of the particles at once, to immediately fill the scene
-    starfield.manualEmitCount = 100000;
+    starfield.manualEmitCount = 10000;
 
     // We want the stars to live forever
     starfield.minLifeTime = Number.MAX_VALUE;
@@ -20,7 +20,7 @@ const createStarfield = (scene: BABYLON.Scene) => {
     // We don't want the stars to move
     starfield.minEmitPower = 1;
     starfield.maxEmitPower = 0;
-    starfield.gravity = new BABYLON.Vector3(0, 0, 0);
+    starfield.gravity = new BABYLON.Vector3(0, 0, -0.1);
 
     // Star colours will pick from somewhere between these two colours
     starfield.color1 = new BABYLON.Color4(1, 0.8, 0.8, 1.0);

@@ -5,9 +5,10 @@ import DataModal from './components/DataModal';
 import NavComponent from './components/NavComponent';
 import RegistrationModal from './components/RegistrationModal';
 import LoginModal from './components/LoginModal';
+import authService from './services/authService';
 
 const App: React.FC = () => {
-  const [isDataModalVisible, setIsDataModalVisible] = useState(true);
+  const [isDataModalVisible, setIsDataModalVisible] = useState(false);
   const [isGaugesModalVisible, setIsGaugesModalVisible] = useState(false);
   const [spaceCraftCoordinates, setSpaceCraftCoordinates] = useState({ x: 0, y: 0, z: 0 });
   const [isRegistrationModalVisible, setIsRegistrationModalVisible] = useState(true);
@@ -25,11 +26,12 @@ const App: React.FC = () => {
     setIsLoginModalVisible(true);
   };
 
-  const handleLoginSuccess = (userData: any) => {
+  const handleLoginSuccess = async (userData: any) => {
     setIsLoginModalVisible(false);
+    const userDetails = await authService.getUserDetails(userData.id);
     setPlayerInfo({
-      name: userData.displayName, // Update this line based on your actual user data structure
-      score: userData.score, // Update this as per your data
+      name: userDetails.display_name,
+      level: userData.level, // Update this as per your data
       credits: userData.credits // Update this as per your data
     });
   };
@@ -54,7 +56,7 @@ const App: React.FC = () => {
                 onToggleGauges={toggleGaugesModal}
                 onOpenData={handleOpenDataModal}
                 playerName={playerInfo.name}
-                score={playerInfo.score}
+                level={playerInfo.level}
                 credits={playerInfo.credits}
               />
             </div>
