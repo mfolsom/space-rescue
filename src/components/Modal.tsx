@@ -9,7 +9,7 @@ const Modal: React.FC = () => {
 
     return (
         <div>
-            <button onClick={toggleModal}>Open Modalzzz</button>
+            <button onClick={toggleModal}>Open Modal</button>
 
             {isModalOpen && (
                 <div
