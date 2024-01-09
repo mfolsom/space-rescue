@@ -20,6 +20,7 @@
     background-color: #4CAF50; /* Change the background color */
     color: white; /* Change the text color */
     font-size: 1.2em; /* Make the text a bit bigger */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .player-info {
