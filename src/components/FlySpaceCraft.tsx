@@ -48,9 +48,8 @@ const loadMeshes = (
     spaceCraftMesh: React.MutableRefObject<BABYLON.Mesh | null>,
     onSpaceCraftMove: (coordinates: { x: number, y: number, z: number }) => void,
     setIsKeyPressed: React.Dispatch<React.SetStateAction<boolean>>,
-    fuel: number,
     fuelRef: React.MutableRefObject<number>,
-    setFuel: React.Dispatch<React.SetStateAction<number>>
+
 ) => {
     console.log("Loading meshes...")
     return new Promise<void>((resolve) => {
@@ -183,7 +182,7 @@ const FlySpaceCraft: React.FC<{
                 createStarfield(scene);
                 createMars(scene);
 
-                await loadMeshes(scene, spaceCraftMesh, onSpaceCraftMove, setIsKeyPressed, fuel, fuelRef, setFuel); // Wait for the mesh to load
+                await loadMeshes(scene, spaceCraftMesh, onSpaceCraftMove, setIsKeyPressed, fuelRef); // Wait for the mesh to load
                 camera.lockedTarget = spaceCraftMesh.current; // Set the camera to follow the mesh
                 startRenderLoop(engine, scene, spaceCraftMesh, setFuel);
 

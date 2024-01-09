@@ -23,7 +23,7 @@ const Registration: React.FC<RegistrationProps> = ({ onRegistrationSuccess, onSh
     const [displayName, setDisplayName] = useState('');
     const [errors, setErrors] = useState<string[]>([]);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             const response = await authService.register({
