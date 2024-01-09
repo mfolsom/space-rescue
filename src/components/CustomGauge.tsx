@@ -3,8 +3,8 @@ import React from 'react';
 interface CustomGaugeProps {
     radius: number;
     percent?: number;
-    icon: string; // URL of the icon
-    label: string; // Label for the gauge
+    icon: string;
+    label: string;
 }
 
 const CustomGauge: React.FC<CustomGaugeProps> = ({ radius, percent = 0, icon, label }) => {
@@ -36,6 +36,7 @@ const CustomGauge: React.FC<CustomGaugeProps> = ({ radius, percent = 0, icon, la
                     strokeWidth={strokeWidth}
                     strokeDasharray={dashArray}
                     transform={transform}
+                    fontFamily='gil sans'
                 />
                 <circle
                     className="gauge_percent"
@@ -67,9 +68,10 @@ const CustomGauge: React.FC<CustomGaugeProps> = ({ radius, percent = 0, icon, la
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
                 textAlign: 'center',
-                color: 'white'
+                color: 'white',
+                fontFamily: 'Gill Sans'
             }}>
-                <p>{label}: {percentNormalized}%</p>
+                <p style={{ fontFamily: 'Gill Sans' }}>{label}: {percentNormalized}%</p>
             </div>
 
         </div>

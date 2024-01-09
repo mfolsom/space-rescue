@@ -1,6 +1,6 @@
 import axios from 'axios'; // If you are using axios
 
-const API_BASE_URL = "http://localhost:3000"; // Replace with actual API URL
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 interface User {
     email: string;
@@ -27,9 +27,6 @@ const register = async (userData: User) => {
     }
 };
 
-
-// User Login
-// User Login
 const login = async (user: { user: Pick<User, 'email' | 'password'> }) => {
     try {
         const response = await axios.post(`${API_BASE_URL}/users/sign_in`, user);

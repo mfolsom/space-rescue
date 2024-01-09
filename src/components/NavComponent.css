@@ -27,13 +27,14 @@
     margin-top: 10px;
     padding: 10px;
     color:rgb(145, 241, 246);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .player-icon {
     width: 20px;
     height: 20px;
     margin-right: 10px;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: left;
 }
 
 /* Small phone screens */

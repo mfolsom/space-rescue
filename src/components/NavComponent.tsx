@@ -18,7 +18,7 @@ const NavComponent: React.FC<NavComponentProps> = ({ onToggleGauges, onOpenData,
 
             <div className="player-info">
                 <p><img className="player-icon" src={playerIcon} alt="Player Icon" /> {playerName}</p>
-                <p><img className="player-icon" src={levelIcon} alt="Level Icon" />Level: {level}</p>
+                <p><img className="player-icon" src={levelIcon} alt="Level Icon" /> Level: {level}</p>
                 <p><img className="player-icon" src={creditsIcon} alt="Credits Icon" /> Credits: {credits}</p>
 
             </div>

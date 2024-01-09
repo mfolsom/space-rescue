@@ -9,6 +9,7 @@
     padding: 20px;
     overflow-y: auto; /* Add scroll for overflow */
     box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .data-modal .close-button {
