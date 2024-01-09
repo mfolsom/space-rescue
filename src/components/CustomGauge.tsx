@@ -1,4 +1,5 @@
 import React from 'react';
+import styled, { keyframes, css } from 'styled-components';
 
 interface CustomGaugeProps {
     radius: number;
@@ -6,6 +7,23 @@ interface CustomGaugeProps {
     icon: string;
     label: string;
 }
+
+// Define the keyframes animation
+const flashAnimation = keyframes`
+    0% { opacity: 1; }
+    50% { opacity: 0.25; }
+    100% { opacity: 1; }
+`;
+
+// Create a styled component for the gauge
+const Gauge = styled.div<{ percent: number }>`
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+
+    // Conditionally apply the animation when percent is 0
+    animation: ${props => props.percent === 0 ? css`${flashAnimation} 2s infinite` : 'none'};
+`;
 
 const CustomGauge: React.FC<CustomGaugeProps> = ({ radius, percent = 0, icon, label }) => {
     const strokeWidth = radius * 0.2;
@@ -18,7 +36,7 @@ const CustomGauge: React.FC<CustomGaugeProps> = ({ radius, percent = 0, icon, la
     const offset = arc - (percentNormalized / 100) * arc; // Offset for the dash array
 
     return (
-        <div style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
+        <Gauge percent={percent}>
             <svg height={radius * 2} width={radius * 2}>
                 <defs>
                     <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
@@ -52,7 +70,6 @@ const CustomGauge: React.FC<CustomGaugeProps> = ({ radius, percent = 0, icon, la
                     style={{ transition: "stroke-dashoffset 0.3s" }}
                     transform={transform}
                 />
-                {/* Additional SVG elements for gauge can be added here */}
             </svg>
             <img src={icon} alt="icon" style={{
                 position: 'absolute',
@@ -69,12 +86,12 @@ const CustomGauge: React.FC<CustomGaugeProps> = ({ radius, percent = 0, icon, la
                 transform: 'translate(-50%, -50%)',
                 textAlign: 'center',
                 color: 'white',
-                fontFamily: 'Gill Sans'
+                fontFamily: 'Gill Sans',
             }}>
                 <p style={{ fontFamily: 'Gill Sans' }}>{label}: {percentNormalized}%</p>
             </div>
 
-        </div>
+        </Gauge>
     );
 };
 

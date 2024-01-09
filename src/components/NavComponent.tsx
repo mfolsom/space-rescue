@@ -5,6 +5,7 @@ import creditsIcon from '../assets/credits.png'
 import levelIcon from '../assets/level.png'
 
 interface NavComponentProps {
+    isVisible: boolean;
     onToggleGauges: () => void;
     onOpenData: () => void;
     playerName: string;
@@ -12,7 +13,8 @@ interface NavComponentProps {
     credits: number;
 }
 
-const NavComponent: React.FC<NavComponentProps> = ({ onToggleGauges, onOpenData, playerName, level, credits }) => {
+const NavComponent: React.FC<NavComponentProps> = ({ isVisible, onToggleGauges, onOpenData, playerName, level, credits }) => {
+    if (!isVisible) return null;
     return (
         <div className="top-right-nav">
 

@@ -50,23 +50,19 @@ const Registration: React.FC<RegistrationProps> = ({ onRegistrationSuccess, onSh
         <div>
             <h1>Welcome to Space Rescue!</h1>
             <h2>Sign Up</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <div>
-                    <label>Confirm Password:</label>
-                    <input type="password" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} />
-                </div>
-                <div>
-                    <label>Display Name:</label>
-                    <input type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} />
-                </div>
+            <form onSubmit={handleSubmit} className="registration-form">
+                <label htmlFor="email">Email:</label>
+                <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} aria-label="Email" />
+
+                <label htmlFor="password">Password:</label>
+                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} aria-label="Password" />
+
+                <label htmlFor="passwordConfirmation">Confirm Password:</label>
+                <input type="password" id="passwordConfirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} aria-label="Confirm Password" />
+
+                <label htmlFor="displayName">Display Name:</label>
+                <input type="text" id="displayName" value={displayName} onChange={(e) => setDisplayName(e.target.value)} aria-label="Display Name" />
+
                 <button type="submit">Submit</button>
             </form>
             {errors.length > 0 && (
@@ -78,10 +74,10 @@ const Registration: React.FC<RegistrationProps> = ({ onRegistrationSuccess, onSh
             )}
             <div className="login-link">
                 <p>
-                    Already have an account? <span onClick={onShowLogin} style={{ cursor: 'pointer', color: 'blue' }}>Log in</span>
+                    Already have an account? <a href="#" onClick={onShowLogin} >Log in</a>
                 </p>
             </div>
-        </div>
+        </div >
     );
 };
 

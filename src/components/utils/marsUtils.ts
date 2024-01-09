@@ -4,7 +4,7 @@ const createMars = (scene: BABYLON.Scene) => {
     // Create Mars sphere
     const mars = BABYLON.MeshBuilder.CreateSphere("mars", { diameter: 250 }, scene);
     mars.position = new BABYLON.Vector3(0, 0, 5000); // Set Mars position
-
+    mars.receiveShadows = false;
     //add a rotation to the mesh
     mars.rotation.x = 0.5;
 
@@ -30,6 +30,7 @@ const createMars = (scene: BABYLON.Scene) => {
     //make atmosphere transparent
     atmosphereMaterial.alpha = 0.4;
     //make atmosphere glow
+    marsMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
     atmosphereMaterial.emissiveFresnelParameters = new BABYLON.FresnelParameters();
     atmosphereMaterial.emissiveFresnelParameters.bias = 0.7;
     atmosphereMaterial.emissiveFresnelParameters.power = 20;

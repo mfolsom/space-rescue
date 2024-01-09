@@ -5,11 +5,13 @@
     bottom: 50%;
     width: 15%; /* Adjust as needed */
     background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    border: oldlace 1px solid;
+    border-radius: 10px;
     color: white;
-    padding: 20px;
-    overflow-y: auto; /* Add scroll for overflow */
+    padding-left: 10px;
     box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
 }
 
 .data-modal .close-button {
@@ -20,4 +22,10 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+}
+.color-a {
+    color: rgb(9, 248, 0);
+}
+.color-b {
+    color: rgb(219, 54, 4);
 }

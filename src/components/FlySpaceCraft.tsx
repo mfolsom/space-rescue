@@ -36,7 +36,7 @@ const initializeBabylon = (canvas: HTMLCanvasElement, targetMesh: BABYLON.Mesh |
 
     // The target of the camera, what it's looking at
     camera.lockedTarget = targetMesh;
-    camera.inertia = 0.5;
+    camera.inertia = 0.25;
 
 
     return { engine, scene, camera };
@@ -55,6 +55,8 @@ const loadMeshes = (
     return new Promise<void>((resolve) => {
         BABYLON.SceneLoader.ImportMesh("", "assets/", "Spaceship_BarbaraTheBee.gltf", scene, function (meshes) {
             spaceCraftMesh.current = meshes[1] as BABYLON.Mesh;
+            spaceCraftMesh.current.receiveShadows = false;
+
             meshes.forEach(mesh => {
                 mesh.position.y = 5; // Example: Adjusting the position
                 mesh.position.x = -1; // Example: Adjusting the position
@@ -113,6 +115,7 @@ const loadMeshes = (
                             console.log(`Y Position: ${spaceCraftMesh.current.position.y}`);
                             console.log(`X Position: ${spaceCraftMesh.current.position.x}`);
                             console.log(`Z Position: ${spaceCraftMesh.current.position.z}`);
+
                         }
                     }
                 )
@@ -147,8 +150,8 @@ const startRenderLoop = (engine: BABYLON.Engine, scene: BABYLON.Scene, spaceCraf
             if (currentPositionZ > previousPositionZ) {
                 const distanceTraveled = currentPositionZ - previousPositionZ;
                 const maxDistance = 4500;
-                const fuelConsumptionRate = (distanceTraveled / maxDistance) * 100; // Calculate the percentage of the total distance traveled
-                setFuel(prevFuel => Math.max(prevFuel - fuelConsumptionRate, 0)); // Deplete the fuel by the calculated percentage
+                const fuelConsumptionRate = (distanceTraveled / maxDistance) * 100;
+                setFuel(prevFuel => Math.max(prevFuel - fuelConsumptionRate, 0));
             }
             previousPositionZ = currentPositionZ;
         }

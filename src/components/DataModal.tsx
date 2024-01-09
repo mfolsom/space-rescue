@@ -25,12 +25,14 @@ const DataModal: React.FC<DataModalProps> = ({ isVisible, coordinates }) => {
     return (
         <div className="data-modal">
             <h2>Galactic Coordinates</h2>
-            <p>X: {coordinates.x.toFixed(2)}, Y: {coordinates.y.toFixed(2)}, Z: {coordinates.z.toFixed(2)}</p>
+            <p>X: {coordinates.x.toFixed(2)}</p>
+            <p>Y: {coordinates.y.toFixed(2)}</p>
+            <p>Z: {coordinates.z.toFixed(2)}</p>
 
             {coordinates.z >= 3500 && (
                 <>
-                    <h2>
-                        {coordinates.z >= 4250 ? `Successful Orbit: ${planetConditions.name}` : `Approaching ${planetConditions.name}`}
+                    <h2 className={coordinates.z >= 4250 ? `color-a` : `color-b`}>
+                        {coordinates.z >= 4250 ? `Successful Orbit: ${planetConditions.name}` : `Approaching Orbit: ${planetConditions.name}`}
                     </h2>
                     <h3>Landing Conditions</h3>
                     <ul>

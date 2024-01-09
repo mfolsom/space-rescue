@@ -18,9 +18,9 @@ const createStarfield = (scene: BABYLON.Scene) => {
     starfield.maxSize = 0.25 * 1000;
 
     // We don't want the stars to move
-    starfield.minEmitPower = 1;
+    starfield.minEmitPower = 0;
     starfield.maxEmitPower = 0;
-    starfield.gravity = new BABYLON.Vector3(0, 0, -0.1);
+    // starfield.gravity = new BABYLON.Vector3(0, 0, -0.1);
 
     // Star colours will pick from somewhere between these two colours
     starfield.color1 = new BABYLON.Color4(1, 0.8, 0.8, 1.0);
@@ -32,9 +32,11 @@ const createStarfield = (scene: BABYLON.Scene) => {
 }
 const createLights = (scene: BABYLON.Scene) => {
     const light = new BABYLON.HemisphericLight("ambient light", new BABYLON.Vector3(0, 0, 0), scene);
-    light.intensity = 0.25;
+    light.intensity = 0.5;
     const directionalLight = new BABYLON.DirectionalLight("directional light", new BABYLON.Vector3(1, -1, -1), scene);
     directionalLight.intensity = 1;
+    const pointLight = new BABYLON.PointLight("point light", new BABYLON.Vector3(0, 0, 0), scene);
+    pointLight.intensity = 0.5;
 };
 
 export { createLights, createStarfield };

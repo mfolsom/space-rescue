@@ -8,6 +8,7 @@ import LoginModal from './components/LoginModal';
 import authService from './services/authService';
 
 const App: React.FC = () => {
+  const [isNavComponentVisible, setIsNavComponentVisible] = useState(false); // [1
   const [isDataModalVisible, setIsDataModalVisible] = useState(false);
   const [isGaugesModalVisible, setIsGaugesModalVisible] = useState(false);
   const [spaceCraftCoordinates, setSpaceCraftCoordinates] = useState({ x: 0, y: 0, z: 0 });
@@ -32,9 +33,10 @@ const App: React.FC = () => {
     const userDetails = await authService.getUserDetails(userData.id);
     setPlayerInfo({
       name: userDetails.display_name,
-      level: userData.level, // Update this as per your data
-      credits: userData.credits // Update this as per your data
+      level: userData.level,
+      credits: userData.credits
     });
+    setIsNavComponentVisible(true);
   };
 
   const showLoginModal = () => {
@@ -56,6 +58,7 @@ const App: React.FC = () => {
               />
               <DataModal isVisible={isDataModalVisible} coordinates={spaceCraftCoordinates} />
               <NavComponent
+                isVisible={isNavComponentVisible}
                 onToggleGauges={toggleGaugesModal}
                 onOpenData={handleOpenDataModal}
                 playerName={playerInfo.name}
