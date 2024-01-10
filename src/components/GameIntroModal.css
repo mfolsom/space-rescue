@@ -51,3 +51,45 @@
 .game-intro-content button:hover {
     background-color: #45a049;
 }
+
+    @keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+    }
+
+.fade-in-button {
+    animation: fadeIn 2s ease-in-out;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    animation-delay: 11s; /* Adjust this to be longer than the delay for the last p element */
+    }
+
+    .fade-in-text {
+    animation: fadeIn 2s ease-in-out;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    }
+
+    .fade-in-text:nth-child(1) {
+    animation-delay: 1s;
+    }
+
+    .fade-in-text:nth-child(2) {
+    animation-delay: 3s;
+    }
+
+    .fade-in-text:nth-child(3) {
+    animation-delay: 5s;
+    }
+
+    .fade-in-text:nth-child(4) {
+    animation-delay: 7s;
+    }
+
+    .fade-in-text:nth-child(5) {
+    animation-delay: 9s;
+    }

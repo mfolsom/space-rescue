@@ -60,7 +60,7 @@ const DataModal: React.FC<DataModalProps> = ({ isVisible, coordinates, playerInf
                         ))}
                     </ul>
                     {coordinates.z >= 4250 && (
-                        <button onClick={handleAttemptLandingClick}>Attempt Landing?</button>
+                        <button className="landing-button" onClick={handleAttemptLandingClick}>Attempt Landing?</button>
                     )}
                 </>
             )}
@@ -68,8 +68,8 @@ const DataModal: React.FC<DataModalProps> = ({ isVisible, coordinates, playerInf
             {isFuelModalVisible && (
                 <div className="fuel-modal">
                     <p>You don't have enough fuel to land. Spend 100 credits to fill up?</p>
-                    <button onClick={handleYesClick}>Yes</button>
-                    <button onClick={() => setIsFuelModalVisible(false)}>No</button>
+                    <button className="yes-no-button" onClick={handleYesClick}>Yes</button>
+                    <button className="yes-no-button" onClick={() => setIsFuelModalVisible(false)}>No</button>
                 </div>
             )}
         </div>
