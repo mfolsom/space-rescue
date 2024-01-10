@@ -4,6 +4,7 @@ import '@babylonjs/loaders/glTF';
 import { createLights, createStarfield } from "./utils/spaceCraft";
 import createMars from "./utils/marsUtils";
 import GaugesModal from "./GaugesModal";
+import Tutorial from "./TutorialModal";
 
 let velocity = 0;
 
@@ -170,17 +171,17 @@ const FlySpaceCraft: React.FC<{
     const isInitialized = useRef(false);
     const [isKeyPressed, setIsKeyPressed] = useState(false);
     const fuelRef = useRef(fuel);
+    const [scene, setScene] = useState<BABYLON.Scene | null>(null);
 
     useEffect(() => {
         fuelRef.current = fuel;
         const loadAndStart = async () => {
-            console.log("GAUGES visible in FLYSPACECRAFT?" + isGaugesModalVisible)
 
             if (canvasRef.current && !isInitialized.current) {
                 isInitialized.current = true;
 
                 const { engine, scene, camera } = initializeBabylon(canvasRef.current, spaceCraftMesh.current);
-
+                setScene(scene);
                 createLights(scene);
                 createStarfield(scene);
                 createMars(scene);
@@ -204,6 +205,7 @@ const FlySpaceCraft: React.FC<{
         <div className="canvas-container">
             {isGaugesModalVisible && <GaugesModal isVisible={isGaugesModalVisible} velocity={isKeyPressed ? 100 : 0} fuel={fuel} />}
             <canvas ref={canvasRef} />
+            {scene && <Tutorial scene={scene} />}
         </div>
     );
 };

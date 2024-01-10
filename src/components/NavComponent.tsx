@@ -24,8 +24,8 @@ const NavComponent: React.FC<NavComponentProps> = ({ isVisible, onToggleGauges, 
                 <p><img className="player-icon" src={creditsIcon} alt="Credits Icon" /> Credits: {credits}</p>
 
             </div>
-            <button onClick={onOpenData}>Flight Data</button>
-            <button onClick={onToggleGauges}>Flight Instruments</button>
+            <button className="flight-data-button" onClick={onOpenData}>Flight Data</button>
+            <button className="flight-instruments-button" onClick={onToggleGauges}>Flight Instruments</button>
         </div>
     );
 };
