@@ -1,5 +1,6 @@
 import React from 'react';
 import './WinModal.css'; // Import the CSS file
+import winImage from '../assets/wingame.png'; // Import the win image
 
 interface WinModalProps {
     isVisible: boolean;
@@ -10,8 +11,10 @@ const WinModal: React.FC<WinModalProps> = ({ isVisible }) => {
 
     return (
         <div className="win-modal">
-            {/* <img src="path-to-your-image.jpg" alt="Win" className="win-image" /> */}
-            <div className="win-text">Congratulations, you won!</div>
+            <div className="win-image">
+                <img src={winImage} alt="Win" className="win-image-inner" />
+            </div>
+            <div className="win-text">Congratulations, you rescued Rover!</div>
         </div>
     );
 };
