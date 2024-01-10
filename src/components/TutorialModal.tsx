@@ -63,7 +63,7 @@ const tutorialSteps: TutorialStep[] = [
         condition: (_scene: Scene) => {
             return new Promise((resolve) => {
                 // Create a MutationObserver to watch for changes in the DOM
-                const observer = new MutationObserver((mutationsList, observer) => {
+                const observer = new MutationObserver((observer) => {
                     // Check if the GaugesModal is visible
                     const gaugesModalVisible = document.querySelector('.modal');
 
