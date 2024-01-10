@@ -6,6 +6,7 @@ import NavComponent from './components/NavComponent';
 import RegistrationModal from './components/RegistrationModal';
 import LoginModal from './components/LoginModal';
 import authService from './services/authService';
+import GameIntroModal from './components/GameIntroModal';
 
 const App: React.FC = () => {
   const [isNavComponentVisible, setIsNavComponentVisible] = useState(false); // [1
@@ -16,6 +17,7 @@ const App: React.FC = () => {
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
   const [playerInfo, setPlayerInfo] = useState({ name: '', level: 0, credits: 0 });
   const [fuel, setFuel] = useState(100);
+  const [isGameIntroModalVisible, setIsGameIntroModalVisible] = useState(false);
 
   const handleOpenDataModal = () => setIsDataModalVisible(true);
   const toggleGaugesModal = () => setIsGaugesModalVisible(prev => !prev);
@@ -37,6 +39,7 @@ const App: React.FC = () => {
       credits: userData.credits
     });
     setIsNavComponentVisible(true);
+    setIsGameIntroModalVisible(true);
   };
 
   const showLoginModal = () => {
@@ -66,6 +69,9 @@ const App: React.FC = () => {
                 credits={playerInfo.credits}
               />
             </div>
+            {isGameIntroModalVisible && (
+              <GameIntroModal />
+            )}
             {isRegistrationModalVisible && (
               <RegistrationModal onRegistrationSuccess={handleRegistrationSuccess} onShowLogin={showLoginModal} />
             )}
