@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './DataModal.css';
 
 interface DataModalProps {
     isVisible: boolean;
     coordinates: { x: number, y: number, z: number };
+    playerInfo: { name: string, level: number, credits: number };
+    // setPlayerInfo: (playerInfo: { name: string, level: number, credits: number }) => void;
+    updateCredits: (newCredits: number) => void;
+    setIsLandingSequenceModalVisible: (isVisible: boolean) => void;
 }
 
+const DataModal: React.FC<DataModalProps> = ({ isVisible, coordinates, playerInfo, updateCredits, setIsLandingSequenceModalVisible }) => {
+    const [isFuelModalVisible, setIsFuelModalVisible] = useState(false);
 
-const DataModal: React.FC<DataModalProps> = ({ isVisible, coordinates }) => {
     if (!isVisible) return null;
 
     const planetConditions = {
@@ -21,6 +26,20 @@ const DataModal: React.FC<DataModalProps> = ({ isVisible, coordinates }) => {
     };
 
     const selectedConditions = selectRandomConditions(planetConditions.weather);
+
+    const handleAttemptLandingClick = () => {
+        setIsFuelModalVisible(true);
+    };
+
+    const handleYesClick = () => {
+        if (!playerInfo) {
+            return;
+        }
+        const newCredits = playerInfo.credits - 100; // Subtract 100 from the user's current credits
+        updateCredits(newCredits); // Update the local state
+        setIsFuelModalVisible(false); // Close the modal
+        setIsLandingSequenceModalVisible(true); // Open the landing sequence modal
+    };
 
     return (
         <div className="data-modal">
@@ -40,11 +59,21 @@ const DataModal: React.FC<DataModalProps> = ({ isVisible, coordinates }) => {
                             <li key={index}>{condition}</li>
                         ))}
                     </ul>
+                    {coordinates.z >= 4250 && (
+                        <button onClick={handleAttemptLandingClick}>Attempt Landing?</button>
+                    )}
                 </>
+            )}
+
+            {isFuelModalVisible && (
+                <div className="fuel-modal">
+                    <p>You don't have enough fuel to land. Spend 100 credits to fill up?</p>
+                    <button onClick={handleYesClick}>Yes</button>
+                    <button onClick={() => setIsFuelModalVisible(false)}>No</button>
+                </div>
             )}
         </div>
     );
 };
 
 export default DataModal;
-

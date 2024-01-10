@@ -30,7 +30,7 @@ const register = async (userData: User) => {
 const login = async (user: { user: Pick<User, 'email' | 'password'> }) => {
     try {
         const response = await axios.post(`${API_BASE_URL}/users/sign_in`, user);
-        // You might want to store the user token here if your API provides one
+        // TODO:  store the user token here 
         return response.data;
     } catch (error) {
         console.error("Login error", error);
@@ -42,7 +42,7 @@ const login = async (user: { user: Pick<User, 'email' | 'password'> }) => {
 const logout = async () => {
     try {
         await axios.delete(`${API_BASE_URL}/users/sign_out`);
-        // Handle post-logout logic (like clearing local storage) here
+        // TODO:Handle post-logout logic (like clearing local storage) here
     } catch (error) {
         console.error("Logout error", error);
         throw error;

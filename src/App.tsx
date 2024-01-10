@@ -7,6 +7,8 @@ import RegistrationModal from './components/RegistrationModal';
 import LoginModal from './components/LoginModal';
 import authService from './services/authService';
 import GameIntroModal from './components/GameIntroModal';
+import LandingSequenceModal from './components/LandingSequenceModal';
+import WinModal from './components/WinModal';
 
 const App: React.FC = () => {
   const [isNavComponentVisible, setIsNavComponentVisible] = useState(false); // [1
@@ -18,6 +20,8 @@ const App: React.FC = () => {
   const [playerInfo, setPlayerInfo] = useState({ name: '', level: 0, credits: 0 });
   const [fuel, setFuel] = useState(100);
   const [isGameIntroModalVisible, setIsGameIntroModalVisible] = useState(false);
+  const [isLandingSequenceModalVisible, setIsLandingSequenceModalVisible] = useState(false);
+  const [isWinModalVisible, setIsWinModalVisible] = useState(false);
 
   const handleOpenDataModal = () => setIsDataModalVisible(true);
   const toggleGaugesModal = () => setIsGaugesModalVisible(prev => !prev);
@@ -47,6 +51,13 @@ const App: React.FC = () => {
     setIsLoginModalVisible(true);
   };
 
+  const updateCredits = (newCredits: number) => {
+    setPlayerInfo(prevState => ({
+      ...prevState,
+      credits: newCredits
+    }));
+  };
+
   return (
     <Router>
       <Routes>
@@ -59,7 +70,22 @@ const App: React.FC = () => {
                 fuel={fuel}
                 setFuel={setFuel}
               />
-              <DataModal isVisible={isDataModalVisible} coordinates={spaceCraftCoordinates} />
+              <DataModal
+                isVisible={isDataModalVisible}
+                coordinates={spaceCraftCoordinates}
+                playerInfo={playerInfo}
+                updateCredits={updateCredits}
+                setIsLandingSequenceModalVisible={setIsLandingSequenceModalVisible}
+              />
+              <LandingSequenceModal
+                isVisible={isLandingSequenceModalVisible}
+                onDismiss={() => {
+                  setIsLandingSequenceModalVisible(false);
+                  setIsWinModalVisible(true);
+                }}
+                setIsWinModalVisible={setIsWinModalVisible}
+              />
+
               <NavComponent
                 isVisible={isNavComponentVisible}
                 onToggleGauges={toggleGaugesModal}
@@ -78,6 +104,17 @@ const App: React.FC = () => {
             {isLoginModalVisible && (
               <LoginModal onLoginSuccess={handleLoginSuccess} />
             )}
+            {isLandingSequenceModalVisible && (
+              <LandingSequenceModal
+                isVisible={isLandingSequenceModalVisible}
+                onDismiss={() => {
+                  setIsLandingSequenceModalVisible(false);
+                  setIsWinModalVisible(true);
+                }}
+                setIsWinModalVisible={setIsWinModalVisible}
+              />
+            )}
+            {isWinModalVisible && <WinModal isVisible={isWinModalVisible} />}
           </>
         } />
       </Routes>

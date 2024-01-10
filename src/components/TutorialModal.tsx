@@ -9,7 +9,7 @@ type TutorialStep = {
 
 const tutorialSteps: TutorialStep[] = [
     {
-        description: 'Hold down the left mouse button and drag to the right or left to rotate around the spacecraft.',
+        description: 'Hold down the left mouse button and drag to the ➡️ right or ⬅️ left to navigate the 🚀 spacecraft.',
         condition: (scene: Scene) => {
             // Create a promise that resolves when the user drags the mouse to the right
             return new Promise((resolve) => {
