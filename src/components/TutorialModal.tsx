@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { KeyboardEventTypes, PointerEventTypes, PointerInfo, Scene } from '@babylonjs/core';
 
 
@@ -63,7 +63,7 @@ const tutorialSteps: TutorialStep[] = [
         condition: (_scene: Scene) => {
             return new Promise((resolve) => {
                 // Create a MutationObserver to watch for changes in the DOM
-                const observer = new MutationObserver((observer) => {
+                const observer = new MutationObserver((_placeholder, _obs) => {
                     // Check if the GaugesModal is visible
                     const gaugesModalVisible = document.querySelector('.modal');
 
@@ -139,7 +139,7 @@ const Tutorial: React.FC<TutorialProps> = ({ scene }) => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            color: 'Green',
+            color: 'rgba(14, 255, 1, 0.973)',
             fontSize: '30px',
             position: 'absolute',
             top: '10px',
