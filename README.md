@@ -31,14 +31,14 @@ Before cloning the project, ensure you have the following installed:
 ### Install and Run
 
   Clone the repo
-   git clone https://github.com/yourusername/space-rescue.git
+   git clone https://github.com/mfolsom/space-rescue.git
    cd space-rescue
 
   npm install
 
   npm run dev
 
-  This will start the development server. Open your browser and navigate to http://localhost:3000 to see the game in action.
+  This will start the development server. Open your browser and navigate to your Localhost to start the game.
 
 ### License
 Distributed under the MIT License. See LICENSE
