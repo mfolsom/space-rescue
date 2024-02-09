@@ -31,7 +31,6 @@ Before cloning the project, ensure you have the following installed:
 ### Install and Run
 
   Clone the repo
-   ```sh
    git clone https://github.com/yourusername/space-rescue.git
    cd space-rescue
 
