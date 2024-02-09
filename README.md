@@ -50,10 +50,10 @@ Distributed under the MIT License.
 
 
 ### Acknowledgments and Credits
-Icons used in the game came from [Icons8](https://icons8.com)
-Space flight mechanic inspired by [Joel Malone's Medium Article Series](https://medium.com/@joelmalone/fly-a-spaceship-in-babylonjs-part-1-the-scene-b5887dab436a)
-3D spaceship from [Quaternius: Ultimate Space Kit](https://quaternius.com/packs/ultimatespacekit.html)
-Textures for mars downloaded from [NASA])(https://nasa.gov)
+-Icons used in the game came from [Icons8](https://icons8.com)
+-Space flight mechanic inspired by [Joel Malone's Medium Article Series](https://medium.com/@joelmalone/fly-a-spaceship-in-babylonjs-part-1-the-scene-b5887dab436a)
+-3D spaceship from [Quaternius: Ultimate Space Kit](https://quaternius.com/packs/ultimatespacekit.html)
+-Textures for mars downloaded from [NASA])(https://nasa.gov)
 
 ###LICENSE
 MIT License
