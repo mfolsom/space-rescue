@@ -1,6 +1,6 @@
 # Space Rescue Game
 
-Welcome to Space Rescue is a 3D interactive game where you are a Space Rescue pilot on a mission to rescue stranded settlers throughout the solar system. The game demos your first mission. You can use your mouse or WASD controls to guide the spacecraft. 
+Welcome to Space Rescue: An immersive 3D interactive game where you are a Space Rescue pilot on a mission to rescue stranded settlers throughout the solar system. The game demos your first mission. You can use your mouse or WASD controls to guide the spacecraft. 
 
 This was a project built for my final project at [Maker's Academy Software Development Boot Camp.](https://www.makers.tech) To run this you will need to first clone and start the [accompanying Rails API](https://github.com/mfolsom/space-rescue-api). This will allow you to register with any username you like and login with your credentials.
 
