@@ -41,7 +41,7 @@ Before cloning the project, ensure you have the following installed:
   This will start the development server. Open your browser and navigate to http://localhost:3000 to see the game in action.
 
 ### License
-Distributed under the MIT License.
+Distributed under the MIT License. See LICENSE
 
 ### Contact
  [Megan Folsom: LinkedIn](https://www.linkedin.com/in/meganfolsom)
@@ -50,12 +50,12 @@ Distributed under the MIT License.
 
 
 ### Acknowledgments and Credits
--Icons used in the game came from [Icons8](https://icons8.com)
--Space flight mechanic inspired by [Joel Malone's Medium Article Series](https://medium.com/@joelmalone/fly-a-spaceship-in-babylonjs-part-1-the-scene-b5887dab436a)
--3D spaceship from [Quaternius: Ultimate Space Kit](https://quaternius.com/packs/ultimatespacekit.html)
--Textures for mars downloaded from [NASA])(https://nasa.gov)
+- Icons used in the game came from [Icons8](https://icons8.com)
+- Space flight mechanic inspired by [Joel Malone's Medium Article Series](https://medium.com/@joelmalone/fly-a-spaceship-in-babylonjs-part-1-the-scene-b5887dab436a)
+- 3D spaceship from [Quaternius: Ultimate Space Kit](https://quaternius.com/packs/ultimatespacekit.html)
+- Textures for mars downloaded from [NASA])(https://nasa.gov)
 
-###LICENSE
+### LICENSE
 MIT License
 
 Copyright (c) 2024 Megan Folsom
