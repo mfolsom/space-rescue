@@ -1,30 +1,74 @@
-# React + TypeScript + Vite
+# Space Rescue Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to Space Rescue is a 3D interactive game where you are a Space Rescue pilot on a mission to rescue stranded settlers throughout the solar system. The game demos your first mission. You can use your mouse or WASD controls to guide the spacecraft. 
 
-Currently, two official plugins are available:
+This was a project built for my final project at [Maker's Academy Software Development Boot Camp.](https://www.makers.tech) To run this you will need to first clone and start the [accompanying Rails API](https://github.com/mfolsom/space-rescue-api). This will allow you to register with any username you like and login with your credentials.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
 
-## Expanding the ESLint configuration
+- **ReactJS**: For building the user interface.
+- **Vite**: As the build tool for a faster and more efficient development experience.
+- **TypeScript**: For adding static type definitions to enhance code quality and understandability.
+- **BabylonJS**: A powerful, beautiful, simple, and open game and rendering engine to create stunning 3D experiences in the web browser.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- **Galactic Coordinate Navigation**: Utilizes a unique system to navigate the vast expanse of space.
+- **Dynamic UI Elements**: Interactive elements that display the ship's direction based on real-time galactic coordinates.
+- **Immersive 3D Graphics**: Leveraging BabylonJS to render high-quality 3D graphics for an engaging game experience.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Getting Started
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+To get a local copy up and running, follow these simple steps.
+
+### Prerequisites
+
+Before cloning the project, ensure you have the following installed:
+- Node.js (latest LTS version recommended)
+- A package manager like npm or Yarn
+- Clone and Run the Rails API Backend Server
+
+### Install and Run
+
+  Clone the repo
+   ```sh
+   git clone https://github.com/yourusername/space-rescue.git
+   cd space-rescue
+
+  npm install
+
+  npm run dev
+
+  This will start the development server. Open your browser and navigate to http://localhost:3000 to see the game in action.
+
+### License
+Distributed under the MIT License.
+
+### Contact
+ [Megan Folsom: LinkedIn](https://www.linkedin.com/in/meganfolsom)
+
+[Project Link: https://github.com/mfolsom/space-rescue](https://github.com/mfolsom/space-rescue)
+
+
+###LICENSE
+MIT License
+
+Copyright (c) 2024 Megan Folsom
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
